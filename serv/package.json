@@ -1,0 +1,12 @@
+{
+	"name": "hospapp",
+	"version": "0.0.1",
+	"dependencies": {
+		"extend": "https://github.com/blackhunter/extend/tarball/master",
+		"mongode": "https://github.com/blackhunter/mongode/tarball/master"
+	},
+	"engines": {
+		"node": "0.8.x",
+		"npm": "1.1.x"
+	}
+}
