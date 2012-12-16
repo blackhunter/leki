@@ -37,15 +37,91 @@ body{
 
 /*cols*/
 #d_cols{
-	-moz-box-flex: 1;
-	box-flex: 1;
 	display: -moz-box;
 	display: box;
 	-moz-box-orient: horizontal;
 	box-orient: horizontal;
+	-moz-box-flex: 1;
+	box-flex: 1;
 }
 
-	#d_scroll{
+	#d_cols *.list{
+		box-flex: 1;
+		-moz-box-flex: 1;
+		display: box;
+		display: -moz-box;
+		box-orient: vertical;
+		-moz-box-orient: vertical;
+	}
+
+	#d_cols *.floater{
+		-moz-box-flex: 1;
+		box-flex: 1;
+		overflow-y: hidden;
+		position: relative;
+	}
+
+	#d_cols *.floater>div{
+		position: absolute;
+		width: 100%;
+	}
+
+	#d_cols *.content{
+		display: box;
+		display: -moz-box;
+		width: 100%;
+	}
+
+	#d_cols *.content > div> div{
+		height: 28px;
+	}
+
+	#d_cols *.content > div > div:nth-child(2n){
+		background-color: #ffefc1;
+	}
+
+	#d_cols *.content > div > div:nth-child(2n+1){
+		background-color: white;
+	}
+
+	#d_cats{
+		height: 30px;
+		display: box;
+		display: -moz-box;
+		background-color: #ffb10a;
+		border-bottom: 1px dotted black;
+	}
+
+	*.d_tab0{
+		width: 200px;
+	}
+	*.d_tab1{
+		width: 200px;
+	}
+	*.d_tab2{
+		width: 160px;
+	}
+	*.d_tab3{
+		width: 100px;
+	}
+	*.d_tab4{
+		width: 100px;
+	}
+	*.d_tab5{
+		width: 60px;
+	}
+	*.d_tab6{
+		width: 60px;
+	}
+	*.d_tab7{
+		box-flex: 1;
+		-moz-box-flex: 1;
+	}
+	*.d_tabEnd{
+		width: 20px;
+	}
+
+	#d_cols *.scroll{
 		width: 40px;
 		-moz-box-orient: vertical;
 		box-orient: vertical;
@@ -53,24 +129,57 @@ body{
 		box-pack: center;
 		display: -moz-box;
 		display: box;
-		width: 25px;
+		width: 20px;
+		background-color: #ffca0a;
+		border-left: 2px solid #ffb10a;
 	}
 
-	#d_scroll > div{
+	#d_cols *.scroll > div{
 		position: relative;
 	}
 
-	#d_scroller{
-		background-color: green;
-		height: 40px;
+	#d_cols *.scroller{
+		height: 74px;
 		position: absolute;
 		width: 100%;
+		background-image: url("img/scrollbar.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
 	}
 
-	#d_cols > table{
-		-moz-box-flex: 1;
-		box-flex: 1;
-		display: block;
+	#d_cols *.scrollPos{
+		height: 74px;
+	}
+
+	#d_cols *.handle{
+		background-image: url("img/scrollbar2.png");
+	}
+
+	/*empty*/
+	#d_emptyBox{
+		-moz-box-pack: center;
+		display: -moz-box;
+	}
+
+	#d_emptyBox > div{
+		position: relative;
+	}
+
+	#d_empty{
+		border: 3px solid blue;
+		border-radius: 4px 4px 4px 4px;
+		float: right;
+		left: -70px;
+		margin-right: 4px;
+		padding: 4px;
+		position: absolute;
+		text-align: center;
+		top: 100px;
+		width: 300px;
+	}
+
+	#d_empty img{
+
 	}
 
 /*bubble*/
@@ -83,12 +192,42 @@ body{
 	position: relative;
 }
 
-div.d_b{
+#d_bCont div.d_b{
+	display: none;
+	border-radius: 4px 4px 4px 4px;
+	float: right;
+	left: -70px;
+	margin-right: 4px;
+	padding: 4px;
 	position: absolute;
-	width: 150px;
-	height: 50px;
-	border: 1px solid black;
 	top: -52px;
+	width: 168px;
+}
+
+#d_bCont div.d_load{
+	border: 4px solid #3aa4ff;
+	background-color: #85BBFF;
+	color: white;
+	font-weight: bold;
+}
+
+#d_bCont div.d_endof{
+	border: 4px solid #FF8C16;
+	background-color: #FFA915;
+	color: white;
+	font-weight: bold;
+}
+
+#d_bCont div.d_endof img{
+	float: left;
+	height: 22px;
+	margin: 0px 4px;
+}
+
+#d_bCont div.d_load img{
+	float: left;
+	height: 16px;
+	margin: 2px 6px;
 }
 
 form.drugs{
@@ -121,49 +260,5 @@ form.drugs > *:nth-child(3){
 	position: absolute;
 	right: 2px;
 	top: 2px;
-}
-
-#drugs_list > div:nth-child(2n){
-	background-color: #f5deb3;
-}
-
-#drugs > div:nth-child(2) > div:nth-child(){
-	width: 40px;
-}
-
-*.drugs_tab0{
-	width: 200px;
-}
-*.drugs_tab1{
-	width: 200px;
-}
-*.drugs_tab2{
-	width: 160px;
-}
-*.drugs_tab3{
-	width: 100px;
-}
-*.drugs_tab4{
-	width: 100px;
-}
-*.drugs_tab5{
-	width: 40px;
-}
-*.drugs_tab6{
-	width: 20px;
-}
-*.drugs_tab7{
-	width: 60px;
-}
-*.drugs_tab8{
-	width: 80px;
-}
-
-div.drugs_bv{
-	display: block;
-}
-
-div.drugs_bi{
-	display: none;
 }
 /*drugs_end*/

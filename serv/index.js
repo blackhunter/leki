@@ -47,8 +47,8 @@ extend.paths('/drugs',function(data, res){
 	});
 
 	data.on('end',function(){
-		find[rec.name] = {$regex: '^'+rec.search};
-		drugs.find(find, {limit: rec.limit, skip: rec.skip, sort: rec.name}).toArray(function(err, data){
+		find[rec.names] = {$regex: '^'+rec.search};
+		drugs.find(find, {limit: rec.limit, skip: rec.skip, sort: rec.names}).toArray(function(err, data){
 			res.end(data);
 		});
 	});
