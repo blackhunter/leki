@@ -109,6 +109,9 @@ function scroll(node, settings){
 
 		if(newStart<this.settings.nextLimit*max && this.dir==-1){
 			this.next();
+			if(newStart==max){
+				this.nextEnd();
+			}
 		}
 
 		this.handle.parentNode.style.top = newStart+'px';
@@ -152,7 +155,10 @@ var drugs = {
 		this.scroller.next = function(){
 			if(drugs.db.next>0 && drugs.db.next%drugs.db.ile==0 && !drugs.db.load){
 				drugs.search();
-			}else if(!drugs.db.visible){
+			}
+		}
+		this.scroller.nextEnd = function(){
+			if(!drugs.db.visible && drugs.db.next%drugs.db.ile!=0){
 				drugs.db.visible = true;
 				drugs.endOf();
 			}
@@ -161,18 +167,15 @@ var drugs = {
 		var base = this.scroller.base;
 		//kategorie
 		var cat  = $('#d_cats'),
-			cols = base.$('*.content'),
-			select = $('#d_select');
+			cols = base.$('*.content');
 
 		this.db.cat.forEach(function(ele, i){
 			cols.addHTML('div',{class: 'd_tab'+i});
 			cat.addHTML('div',{html: ele, class: 'd_tab'+i});
-			select.addHTML('option',{
+			form['names'].addHTML('option',{
 				html: ele,
 				fn: function(x){
-					x.onclick = (function(){
-						form['names'].selectedIndex
-					}).bind({key: ele})
+					x.value = drugs.db.order[i];
 				}
 			});
 		});
@@ -216,7 +219,7 @@ var drugs = {
 	},
 	search: function(){
 		var form = document.forms['drugs'];
-		if(form['search'].value=='' || (this.db.prev==form['search'].value && !this.db.next)){
+		if(form['search'].value==''){ // || (this.db.prev==form['search'].value && !this.db.next)
 			return;
 		}
 

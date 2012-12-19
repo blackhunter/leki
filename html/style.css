@@ -1,6 +1,7 @@
 body{
 	margin: 0;
 	width: 100%;
+	font-family: tahoma;
 }
 
 #top{
@@ -90,9 +91,19 @@ body{
 		display: -moz-box;
 		background-color: #ffb10a;
 		border-bottom: 1px dotted black;
+		padding-left: 10px;
+	}
+
+	#d_cats > div{
+		font-weight: bold;
+		padding-top: 4px;
 	}
 
 	*.d_tab0{
+		width: 200px;
+	}
+	*.d_tab0 >div{
+		padding-left: 10px;
 		width: 200px;
 	}
 	*.d_tab1{
@@ -166,20 +177,29 @@ body{
 	}
 
 	#d_empty{
-		border: 3px solid blue;
+		background-color: #faff7a;
+		border: 4px solid #747474;
 		border-radius: 4px 4px 4px 4px;
 		float: right;
-		left: -70px;
-		margin-right: 4px;
-		padding: 4px;
+		left: -193px;
 		position: absolute;
-		text-align: center;
 		top: 100px;
-		width: 300px;
+		width: 387px;
 	}
 
 	#d_empty img{
+		height: 36px;
+		margin: 3px;
+		padding: 6px 6px 2px;
+	}
 
+	#d_empty span{
+		color: black;
+		display: block;
+		float: right;
+		font-size: 18px;
+		font-weight: bold;
+		margin: 16px;
 	}
 
 /*bubble*/
@@ -196,12 +216,12 @@ body{
 	display: none;
 	border-radius: 4px 4px 4px 4px;
 	float: right;
-	left: -70px;
+	left: -91px;
 	margin-right: 4px;
 	padding: 4px;
 	position: absolute;
 	top: -52px;
-	width: 168px;
+	width: 182px;
 }
 
 #d_bCont div.d_load{
@@ -247,18 +267,20 @@ form.drugs > *:nth-child(1){
 
 form.drugs > *:nth-child(2){
 	border: 0 none;
+	font-size: 16px;
 	height: 28px;
-	width: 300px;
+	padding-left: 5px;
+	width: 360px;
 }
 
 form.drugs > *:nth-child(3){
-	background-color: blue;
+	background-color: #47a4ff;
 	border: 0 none;
-	border-radius: 6px 6px 6px 6px;
+	border-radius: 0 3px 3px 0;
 	color: white;
-	padding: 4px;
+	font-weight: bold;
+	padding: 6px;
 	position: absolute;
-	right: 2px;
-	top: 2px;
+	right: 0;
 }
 /*drugs_end*/
