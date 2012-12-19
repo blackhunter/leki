@@ -12,10 +12,6 @@ body{
 	box-sizing: border-box;
 }
 
-#content{
-
-}
-
 /*drugs*/
 
 #drugs{
@@ -284,3 +280,7 @@ form.drugs > *:nth-child(3){
 	right: 0;
 }
 /*drugs_end*/
+
+#person{
+	display: none;
+}

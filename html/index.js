@@ -289,7 +289,7 @@ person = {
 		this.scroller = new scroll(cols, {});
 		this.scroller.init();
 		this.scroller.next = function(){
-			if([person.db.next>0 && person.db.next%person.db.ile==0 && !person.db.load){
+			if(person.db.next>0 && person.db.next%person.db.ile==0 && !person.db.load){
 				person.search();
 			}else if(!person.db.visible){
 				person.db.visible = true;
