@@ -37,6 +37,29 @@
 				</div>
 	        </div>
         </div>
+	    <div id="person">
+		    <div>
+			    <form name="person" class="person" method="POST" action="/s/person">
+				    <!--szukanie po pesel, nazwisko, -->
+				    <img src="img/search.png">
+				    <input type="text" name="search">
+				    <select name="names"></select>
+				    <input type="button" name="add_filter" value="Dodaj filtr">
+				    <div id="p_select"></div>
+			    </form>
+		    </div>
+		    <div id="filters">
+
+		    </div>
+		    <div id="p_cats"></div>
+		    <div id="p_cols"> </div>
+		    <div id="p_bCont" class="drugs_bv">
+			    <div>
+				    <div class="d_b d_load"><img src="img/loading.gif"><span>Trwa ładowanie</span></div>
+				    <div class="d_b d_endof"><img src="img/endof.png"><span>Koniec rekordów...</span></div>
+			    </div>
+		    </div>
+	    </div>
     </div>
 </body>
 </html>

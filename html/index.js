@@ -30,6 +30,7 @@ function scroll(node, settings){
 
 		scroller.addHTML('div',{class: 'scroll'}).addHTML('div',{class: 'scrollPos'}).addHTML('div',{class: 'scroller', fn: function(self){
 			newScroll.scroller = self;
+			console.log(self);
 			self.addEventListener('mousedown',(function(e){
 				e.currentTarget.classList.add('handle');
 				document.onmouseup = this.endDrag.bind(this);
@@ -251,5 +252,107 @@ var drugs = {
 	},
 	empty: function(on){
 		$('#d_empty').style.display =(on)? 'block' : 'none';
+	}
+},
+person = {
+	init: function(){
+		var form = document.forms['person'];
+
+		form['search'].addEventListener('focus',function(){
+			person.db.next = 0;
+			this.value = null;
+		});
+
+		form['search'].addEventListener('keyup',function(){
+			person.db.next = 0;
+			person.search();
+		});
+
+		form['names'].addEventListener('change',function(){
+			person.db.next = 0;
+			person.search();
+		});
+
+		form['add_filter'].addEventListener('click',function(){
+			person.addFilter();
+		});
+		/*TODO
+		 * - ostatnie ustawienia wyszukiwania
+		 * - kolory wyszukiwan
+		 * */
+
+		var cols = $('#p_cols');
+		this.db.ile = Math.floor(cols.clientHeight/20*2);
+		this.scroller = new scroll(cols, {});
+		this.scroller.init();
+		this.scroller.next = function(){
+			if([person.db.next>0 && person.db.next%person.db.ile==0 && !person.db.load){
+				person.search();
+			}else if(!person.db.visible){
+				person.db.visible = true;
+				person.endOf();
+			}
+		}
+
+		var base = this.scroller.base;
+		//kategorie
+		var cat  = $('#p_cats'),
+			cols = base.$('*.content'),
+			select = $('#p_select');
+
+		this.db.cat.forEach(function(ele, i){
+			cols.addHTML('div',{class: 'p_tab'+i});
+			cat.addHTML('div',{html: ele, class: 'p_tab'+i});
+			select.addHTML('option',{
+				html: ele,
+				fn: function(x){
+					x.onclick = (function(){
+						form['names'].selectedIndex
+					}).bind({key: ele})
+				}
+			});
+		});
+		cat.addHTML('div',{class: 'p_tabEnd'});
+
+		//data incoming
+		this.xhr.on('done',function(data){
+			var p_list = person.scroller.base.$$('*.content>div'),
+				list = JSON.parse(data);
+
+			person.db.order.forEach(function(ele, i){
+				if(!person.db.next){
+					p_list[i].innerHTML = null;
+					if(!list.length)
+						person.empty(true);
+					else
+						person.empty(false);
+				}
+				list.forEach(function(val, j){
+					p_list[i].addHTML('div',{html: list[j][ele]});
+				});
+			});
+
+			drugs.load(false);
+			drugs.db.next +=(list.length)? list.length : 1;
+		});
+		this.xhr.on('error',function(data){
+			console.log('Error: \n',data);
+		});
+	},
+	xhr: new xhr(),
+	db: {
+
+	},
+	filters: {
+
+	},
+	addFilter: function(){
+		var form = document.forms['person'];
+
+
+		this.filters[form['names'].value] = form['search'].value;
+	},
+	deleteFilter: function(reset){
+
 	}
 }
